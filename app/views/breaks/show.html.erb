@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @break %>
+
+<div>
+  <%= link_to "Edit this break", edit_break_path(@break) %> |
+  <%= link_to "Back to breaks", breaks_path %>
+
+  <%= button_to "Destroy this break", @break, method: :delete %>
+</div>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Breaks</h1>
+
+<div id="breaks">
+  <% @breaks.each do |break| %>
+    <%= render break %>
+    <p>
+      <%= link_to "Show this break", break %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New break", new_break_path %>
