@@ -30,10 +30,12 @@ class User < ApplicationRecord
   
 
   def active_shifts?
-    shifts.where(active: TRUE).length > 0
+    shifts.where(active: true, user_id: self.id).length > 0
   end
 
   def start_lunch_break
+    return if active_shift.lunch_break.present?
+
     lunch_break = LunchBreak.new
     active_shift.lunch_break = lunch_break
     lunch_break.clock_start_time!
@@ -60,6 +62,6 @@ class User < ApplicationRecord
   end
 
   def active_shift
-    shifts.where(active: true).first
+    shifts.where(active: true, user_id: self.id).first
   end
 end
