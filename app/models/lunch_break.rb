@@ -6,6 +6,7 @@
 #  active     :boolean
 #  end_time   :datetime
 #  start_time :datetime
+#  type       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  shift_id   :integer          not null

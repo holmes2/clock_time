@@ -19,10 +19,5 @@
 #
 #  shift_id  (shift_id => shifts.id)
 #
-require "test_helper"
-
-class BreakTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class NormalBreak < Break
 end
