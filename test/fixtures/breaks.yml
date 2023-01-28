@@ -1,4 +1,23 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: breaks
+#
+#  id         :integer          not null, primary key
+#  active     :boolean
+#  end_time   :datetime
+#  start_time :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  shift_id   :integer          not null
+#
+# Indexes
+#
+#  index_breaks_on_shift_id  (shift_id)
+#
+# Foreign Keys
+#
+#  shift_id  (shift_id => shifts.id)
+#
 
 one:
   start_time: 2023-01-27 21:20:35

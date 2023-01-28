@@ -1,4 +1,23 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: shifts
+#
+#  id         :integer          not null, primary key
+#  active     :boolean
+#  end_time   :datetime
+#  start_time :datetime
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer          not null
+#
+# Indexes
+#
+#  index_shifts_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  user_id  (user_id => users.id)
+#
 
 one:
   start_time: 2023-01-27 21:17:04
