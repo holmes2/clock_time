@@ -8,4 +8,6 @@
 
   <%= button_to "Destroy this user", @user, method: :delete %>
   <%= link_to "Start Shift", new_user_shift_path(@user) %>
+  <%= link_to "Show All my Shifts", user_shifts_path(@user) %>
+
 </div>

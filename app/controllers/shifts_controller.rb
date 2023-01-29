@@ -1,5 +1,5 @@
 class ShiftsController < ApplicationController
-  before_action :set_shift, only: %i[ show edit update destroy ]
+  before_action :set_shift, only: %i[ show edit update ]
 
   # GET /shifts or /shifts.json
   def index
@@ -8,15 +8,6 @@ class ShiftsController < ApplicationController
 
   # GET /shifts/1 or /shifts/1.json
   def show
-  end
-
-  # GET /shifts/new
-  def new
-    @shift = Shift.new
-  end
-
-  # GET /shifts/1/edit
-  def edit
   end
 
   # POST /shifts or /shifts.json
@@ -47,16 +38,6 @@ class ShiftsController < ApplicationController
     end
   end
 
-  # DELETE /shifts/1 or /shifts/1.json
-  def destroy
-    @shift.destroy
-
-    respond_to do |format|
-      format.html { redirect_to shifts_url, notice: "Shift was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_shift
@@ -65,6 +46,6 @@ class ShiftsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def shift_params
-      params.require(:shift).permit(:start_time, :end_time, :active, :user_id)
+      params.require(:shift).permit(:user_id)
     end
 end
