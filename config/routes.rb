@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users do
     get 'shifts/end', to: 'shifts#end_shift'
-    get 'shifts/start', to: 'shifts#new'
+    get 'shifts/start', to: 'shifts#start_shift'
     resources :shifts, only: [:show, :index] do
       resources :breaks, only: [:create, :index, :update, :show, :new]
     end

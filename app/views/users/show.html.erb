@@ -3,12 +3,18 @@
 <%= render @user %>
 
 <div>
+  <% if @user.active_shift.present? %>
+    <%= link_to "End Shift", user_shifts_end_path(@user) %>
+  <% else %>
+    <%= link_to "Start Shift", user_shifts_start_path(@user) %>
+  <% end %>
+</div>
+<br />
+<div>
+  <%= link_to "My Shifts", user_shifts_path(@user) %>
+</div>
+<br />
+<div>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
-
-  <%= button_to "Destroy this user", @user, method: :delete %>
-  <%= link_to "Start Shift", user_shifts_start_path(@user) %>
-  <%= link_to "End Shift", user_shifts_end_path(@user) %>
-  <%= link_to "Show All my Shifts", user_shifts_path(@user) %>
-
 </div>

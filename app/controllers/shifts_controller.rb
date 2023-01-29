@@ -1,5 +1,5 @@
 class ShiftsController < ApplicationController
-  before_action :set_user, only: %i[ show end_shift new index]
+  before_action :set_user, only: %i[ show end_shift start_shift index]
 
   # GET /shifts or /shifts.json
   def index
@@ -10,11 +10,12 @@ class ShiftsController < ApplicationController
   #def show
   #end
 
-  # GET /shifts/new
-  def new
+  # GET /shifts/start
+  def start_shift
     @user.start_shift
   end
 
+  # GET /shifts/end
   def end_shift
     @user.end_shift
   end

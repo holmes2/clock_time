@@ -3,12 +3,19 @@
 <h1>Shifts</h1>
 
 <div id="shifts">
+  <table>
+    <tr>
+      <th>
+        <strong>Start time:</strong>
+      </th>
+      <th>
+        <strong>End time:</strong>
+      </th>
+    </tr>
   <% @shifts.each do |shift| %>
+    <tr>
     <%= render shift %>
-    <p>
-      <%= link_to "Show this shift", shift %>
-    </p>
+    </tr>
+  </table>
   <% end %>
 </div>
-
-<%= link_to "New shift", new_shift_path %>

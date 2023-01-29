@@ -12,13 +12,13 @@
 #
 
 one:
-  name: MyString
-  user_id: MyString
-  first_name: MyString
-  last_name: MyString
+  user_name: first_user
+  user_id: user1
+  first_name: Ben
+  last_name: Jones
 
 two:
-  name: MyString
-  user_id: MyString
-  first_name: MyString
-  last_name: MyString
+  user_name: second_user
+  user_id: user2
+  first_name: John
+  last_name:  Doe
