@@ -7,4 +7,5 @@
   <%= link_to "Back to users", users_path %>
 
   <%= button_to "Destroy this user", @user, method: :delete %>
+  <%= link_to "Start Shift", new_user_shift_path(@user) %>
 </div>
