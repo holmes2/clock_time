@@ -3,12 +3,12 @@
 # Table name: users
 #
 #  id         :integer          not null, primary key
-#  name       :string
-#  user_id    :string
 #  first_name :string
 #  last_name  :string
+#  user_name  :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :string
 #
 require "test_helper"
 

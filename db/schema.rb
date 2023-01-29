@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_28_195828) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_28_205956) do
   create_table "breaks", force: :cascade do |t|
     t.datetime "start_time"
     t.datetime "end_time"
@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_28_195828) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "user_name"
     t.string "user_id"
     t.string "first_name"
     t.string "last_name"

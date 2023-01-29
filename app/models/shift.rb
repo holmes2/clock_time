@@ -27,6 +27,15 @@ class Shift < ApplicationRecord
   belongs_to :user
 
   validate :one_active_per_user
+  validate :can_shift_end, if: :active_break
+
+  def active_break
+    return self.lunch_break if self.lunch_break.present? && self.lunch_break.active
+
+    active_breaks = self.normal_breaks.where(active: true)
+    return active_breaks.first if active_breaks.count > 0
+    nil
+  end
 
   private
 
@@ -37,6 +46,11 @@ class Shift < ApplicationRecord
 
   def more_than_zero_active
     Shift.where(user_id: user_id, active: true).count > 0
+  end
+
+  def can_shift_end
+    debugger
+    errors.add(:base, :active_break, message: 'Active break in progress cannot end shift')
   end
 
 end

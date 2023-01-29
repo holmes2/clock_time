@@ -3,18 +3,17 @@
 # Table name: users
 #
 #  id         :integer          not null, primary key
-#  name       :string
-#  user_id    :string
 #  first_name :string
 #  last_name  :string
+#  user_name  :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :string
 #
 class User < ApplicationRecord
   has_many :shifts
-  has_many :breaks, through: :shifts
 
-    def start_shift
+  def start_shift
     return if active_shifts?
 
     shift = Shift.new
@@ -24,6 +23,8 @@ class User < ApplicationRecord
   end
 
   def end_shift
+    return if active_shift.blank?
+
     active_shift.clock_end_time
   end
 
@@ -34,21 +35,26 @@ class User < ApplicationRecord
   end
 
   def start_lunch_break
+    return if active_shift.blank?
     return if active_shift.lunch_break.present?
 
     lunch_break = LunchBreak.new
-    active_shift.lunch_break = lunch_break
+    lunch_break.shift = active_shift
     lunch_break.clock_start_time!
     save!
   end
 
   def end_lunch_break
-    active_shift.lunch_break.clock_end_time
+    return if active_lunch_break.blank?
+
+    active_lunch_break.clock_end_time
   end
 
   def start_break
+    return if active_shift.blank?
+
     normal_break = NormalBreak.new
-    active_shift.breaks << normal_break
+    active_shift.normal_breaks << normal_break
     normal_break.clock_start_time!
     save!
   end
@@ -58,10 +64,19 @@ class User < ApplicationRecord
   end
 
   def active_break
-    active_shift.breaks.where(active: true).first
+    return if active_shift.blank?
+
+    active_shift.active_break
+  end
+
+  def active_lunch_break
+    return if active_shift.blank?
+    return if active_shift.lunch_break.blank?
+
+    return active_shift.lunch_break if active_shift.lunch_break.active
   end
 
   def active_shift
-    shifts.where(active: true, user_id: self.id).first
+    shifts.where(active: true).first
   end
 end
