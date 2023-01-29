@@ -21,6 +21,7 @@
 class Shift < ApplicationRecord
   include Clockable
   attribute :active, default: true
+  scope :by_user, ->(user) { where(user_id: user.id) }
 
   has_many :normal_breaks, class_name: 'NormalBreak'
   has_one :lunch_break, class_name: 'LunchBreak'
@@ -49,7 +50,6 @@ class Shift < ApplicationRecord
   end
 
   def can_shift_end
-    debugger
     errors.add(:base, :active_break, message: 'Active break in progress cannot end shift')
   end
 
