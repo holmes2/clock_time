@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :breaks
-  resources :shifts
-  resources :users
+  resources :users do
+    resources :shifts do
+      resources :breaks
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
