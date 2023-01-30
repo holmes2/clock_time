@@ -14,8 +14,8 @@ application up and running.
 * Database creation
 - bundle exec rake db:migrate
 
+* Running Test
+- bundle exec rspec
+
 * Running the server
 - bundle exec rails s
-
-
-
