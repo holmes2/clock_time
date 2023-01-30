@@ -19,3 +19,7 @@ application up and running.
 
 * Running the server
 - bundle exec rails s
+
+* ERD
+![Model Diagram](erd.png "Title")
+
