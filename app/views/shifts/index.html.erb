@@ -3,19 +3,36 @@
 <h1>Shifts</h1>
 
 <div id="shifts">
-  <table>
+  <table border=1>
     <tr>
+      <th>
+          <strong> Shift Id</strong>
+      </th>
       <th>
         <strong>Start time:</strong>
       </th>
       <th>
         <strong>End time:</strong>
       </th>
+      <th><strong> Lunch Break Start Time </strong></th>
+      <th><strong> Lunch Break End Time </strong></th>
+      <th>
+        <strong> Breaks Count </strong>
+      </th>
+      <th>
+        <strong> Show Breaks </strong>
+      </th>
     </tr>
   <% @shifts.each do |shift| %>
     <tr>
-    <%= render shift %>
+      <td> <%= shift.id %> </td>
+      <td> <%= shift.start_time %> </td>
+      <td> <%= shift.end_time %> </td>
+      <td> <%= shift&.lunch_break&.start_time %> </td>
+      <td> <%= shift&.lunch_break&.end_time %> </td>
+      <td> <%= shift.normal_breaks.count %> </td>
+      <td> <%= link_to "Show Breaks", user_shift_breaks_path(@user,shift_id: shift.id) %>
     </tr>
-  </table>
   <% end %>
+  </table>
 </div>

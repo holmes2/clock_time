@@ -12,6 +12,7 @@
 #
 class User < ApplicationRecord
   has_many :shifts
+  has_many :breaks, through: :shifts
 
   def start_shift
     return if active_shifts?
@@ -86,4 +87,5 @@ class User < ApplicationRecord
   def active_shift
     self.shifts.where(active: true).first
   end
+
 end

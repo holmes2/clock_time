@@ -3,10 +3,7 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all.include(:shifts)
-    respond_to do |format|
-      format.csv { send_data @users.to_csv, filename: "users-#{Date.today}.csv" }
-    end
+    @users = User.all
   end
 
   # GET /users/1 or /users/1.json

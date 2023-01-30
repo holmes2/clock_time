@@ -1,9 +1,10 @@
 class BreaksController < ApplicationController
   before_action :set_break, only: %i[ show edit update destroy ]
+  before_action :set_shift
 
   # GET /breaks or /breaks.json
   def index
-    @breaks = Break.all
+    @breaks = NormalBreak.where(shift_id: @shift.id)
   end
 
   # GET /breaks/1 or /breaks/1.json
@@ -61,6 +62,10 @@ class BreaksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_break
       @break = Break.find(params[:id])
+    end
+
+    def set_shift
+      @shift = Shift.find(params[:shift_id])
     end
 
     # Only allow a list of trusted parameters through.
