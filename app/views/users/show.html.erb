@@ -4,9 +4,10 @@
 
 <div>
   <div>
-    <% if @user.active_shift.present? %>
+    <% if @user.active_shift.present? && @user.active_break.blank? %>
       <%= link_to "End Shift", user_shifts_end_path(@user) %>
-    <% else %>
+    <% end %>
+    <% if @user.active_shift.blank? %>
       <%= link_to "Start Shift", user_shifts_start_path(@user) %>
     <% end %>
   </div>
@@ -23,13 +24,15 @@
       </div>
     <% end %>
 
+    <% if @user.active_shift.present? && @user.active_lunch_break.blank? %>
       <div>
-        <% if @user.active_lunch_break.blank? && @user.active_break.present? %>
+        <% if @user.active_normal_break.present?  %>
           <%= link_to "End Break", user_shifts_end_break_path(@user) %>
         <% else %>
           <%= link_to "Start Break", user_shifts_start_break_path(@user) %>
         <% end %>
       </div>
+    <% end %>
     </div>
   <% end %>
 </div>

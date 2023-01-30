@@ -38,6 +38,11 @@ class Shift < ApplicationRecord
     nil
   end
 
+  def active_normal_break
+    active_breaks = self.normal_breaks.where(active: true)
+    return active_breaks.first if active_breaks.count > 0
+  end
+
   private
 
   def one_active_per_user

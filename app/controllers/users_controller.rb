@@ -3,11 +3,17 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def index
-    @users = User.all
+    @users = User.all.include(:shifts)
+    respond_to do |format|
+      format.csv { send_data @users.to_csv, filename: "users-#{Date.today}.csv" }
+    end
   end
 
   # GET /users/1 or /users/1.json
   def show
+  end
+
+  def download
   end
 
   # GET /users/new
@@ -25,7 +31,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_url(@user) }
+        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }

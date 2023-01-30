@@ -69,14 +69,21 @@ class User < ApplicationRecord
     active_shift.active_break
   end
 
+  def active_normal_break
+    return if active_shift.blank?
+    return if active_shift.active_normal_break.blank?
+
+    active_shift.active_normal_break
+  end
+
   def active_lunch_break
     return if active_shift.blank?
     return if active_shift.lunch_break.blank?
 
-    return active_shift.lunch_break if active_shift.lunch_break.active
+    return active_shift.lunch_break if active_shift.lunch_break.active.present?
   end
 
   def active_shift
-    shifts.where(active: true).first
+    self.shifts.where(active: true).first
   end
 end
