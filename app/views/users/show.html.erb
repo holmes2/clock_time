@@ -3,10 +3,34 @@
 <%= render @user %>
 
 <div>
+  <div>
+    <% if @user.active_shift.present? %>
+      <%= link_to "End Shift", user_shifts_end_path(@user) %>
+    <% else %>
+      <%= link_to "Start Shift", user_shifts_start_path(@user) %>
+    <% end %>
+  </div>
+
   <% if @user.active_shift.present? %>
-    <%= link_to "End Shift", user_shifts_end_path(@user) %>
-  <% else %>
-    <%= link_to "Start Shift", user_shifts_start_path(@user) %>
+    <div>
+      <% if @user.active_shift&.lunch_break.blank? || @user.active_shift&.lunch_break.active.present? %>
+      <div> 
+        <% if @user.active_lunch_break.present? %>
+          <%= link_to "End Lunch Break", user_shifts_end_lunch_break_path(@user) %>
+        <% else %>
+          <%= link_to "Start Lunch Break", user_shifts_start_lunch_break_path(@user) %>
+        <% end %>
+      </div>
+    <% end %>
+
+      <div>
+        <% if @user.active_lunch_break.blank? && @user.active_break.present? %>
+          <%= link_to "End Break", user_shifts_end_break_path(@user) %>
+        <% else %>
+          <%= link_to "Start Break", user_shifts_start_break_path(@user) %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 </div>
 <br />
